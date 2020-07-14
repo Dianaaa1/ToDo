@@ -31,8 +31,8 @@ var app = new function () {
         data += '<div class="project__name">' + this.myProjects[i].name + '</div>' + "  ";
         data += '<div class="title">' + 'Description:' + '</div>';
         data += '<div class="project__description">' + this.myProjects[i].description + '</div>' + "  ";
-        data += '<div><button onclick="app.edit('+ i +')">Edit</button></div>';
-        data += '<div><button onclick="app.save('+ i +')">Save</button></div>';
+        data += '<div><button onclick="app.edit('+ i +'); app.showsave('+i+')">Edit</button></div>';
+        data += '<div><button class="save" onclick="app.save('+ i +')">Save</button></div>';
         data += '</div>';
         data += '</div>';
       }
@@ -45,8 +45,13 @@ var app = new function () {
     document.getElementById('id').value=this.myProjects[i].id;
     document.getElementById('name').value=this.myProjects[i].name;
     document.getElementById('description').value=this.myProjects[i].description; 
-    document.getElementById('savechanges').onclick=this.save(i);
+    this.showsave(i);
   }
+    //показую кнопку для сохранение изменений
+    this.showsave=(i)=>{
+      let butsave = document.getElementsByClassName("save");
+      butsave[i].style.display="block";
+    }
   //сохраняю
   this.save=(i)=> {
     var idvalue = document.getElementById('id').value;
